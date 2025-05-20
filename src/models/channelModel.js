@@ -2,17 +2,36 @@ import prisma from "../../prisma/prisma.js";
 
 class ChannelModel {
   // Obter todas os canais
-  async findAll() {
+  async findAll(description, bannerUrl, pagina, limite) {
+
+    if (description) {
+      where.description =  description;
+     
+    }
+
+    if (bannerUrl) {
+      where.bannerUrl = bannerUrl;
+  }
+
+  if (Number(limite) < 1 || Number(limite) > 100) {
+    limite = 10;
+  }
+
+  if (Number(pagina) < 1) {
+    pagina = 1;
+  }
+
+  const where = {};
+
+  const skip = (Number(pagina) - 1) * Number(limite);
+
     const canais = await prisma.channel.findMany({
       orderBy: {
         createdAt: "desc",
       },
-      include: {
-        cards: true,
-      },
+      where,
+      skip,
     });
-
-    // console.log(canais);
 
     return canais;
   }

@@ -3,8 +3,12 @@ import ChannelModel from "../models/channelModel.js";
 class ChannelController {
   // GET /canais
   async getAllChannel(req, res) {
+    const { description, bannerUrl } = req.query;
+
+    const pagina = req.query.pagina || 1;
+    const limite = req.query.limite || 10;
     try {
-      const canais = await ChannelModel.findAll();
+      const canais = await ChannelModel.findAll(description, bannerUrl, pagina, limite);
       res.json(canais);
     } catch (error) {
       console.error("Erro ao buscar os canis:", error);
@@ -34,10 +38,10 @@ class ChannelController {
   async createChannel(req, res) {
     try {
       // Validação básica
-      const { name, description, isLive } = req.body;
+      const { userId, name, description, isLive, bannerUrl, logoUrl } = req.body;
 
       // Verifica se todos os campos do canal foram fornecidos
-      if (!name || !description || !isLive) {
+      if (!userId || !name || !description || isLive || !bannerUrl || !logoUrl) {
         return res.status(400).json({
           error: "Os campos nome, descrição e isLive são obrigatórios!",
         });
@@ -45,9 +49,12 @@ class ChannelController {
 
       // Criar um novo canal
       const newChannel = await ChannelModel.create(
+        userId,
         name,
         description,
         isLive,
+        bannerUrl,
+        logoUrl
         
       );
 
