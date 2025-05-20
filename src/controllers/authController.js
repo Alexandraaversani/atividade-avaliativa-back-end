@@ -17,10 +17,10 @@ class AuthController {
   // Registrar novo usuário
   async register(req, res) {
     try {
-      const { name, email, password } = req.body;
+      const { username, email, password, displayName, avatarUrl, bio } = req.body;
 
       // Validação básica
-      if (!name || !email || !password) {
+      if (!username || !email || !password || !displayName || !avatarUrl || !bio) {
         return res
           .status(400)
           .json({ error: "Os campos nome, email e senha são obrigatórios!" });
@@ -37,9 +37,12 @@ class AuthController {
 
       // Criar objeto do usuário
       const data = {
-        name,
+        username,
         email,
         password: hashedPassword,
+        displayName,
+        avatarUrl,
+        bio,
       };
 
       // Criar usuário
