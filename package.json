@@ -1,14 +1,14 @@
 {
-  "name": "animes-api",
+  "name": "atividade-avaliativa-20-05",
   "version": "1.0.0",
-  "description": "Projeto base de uma API com MVC",
+  "description": "Desenvolvimento de API Back-End para Plataforma de Streaming de Jogos",
   "keywords": [
     "nodejs",
     "javascript",
     "prisma"
   ],
   "license": "MIT",
-  "author": "Felipe Dev",
+  "author": "Alexandra Aversani",
   "type": "module",
   "main": "src/server.js",
   "scripts": {
