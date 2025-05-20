@@ -5,8 +5,9 @@ import jwt from "jsonwebtoken";
 class AuthController {
   // Listar todos os usuários
   async getAllUsers(req, res) {
+    const {displayName, bio} = req.query;
     try {
-      const users = await UserModel.findAll();
+      const users = await UserModel.findAll(displayName, bio);
       res.json(users);
     } catch (error) {
       console.error("Erro ao listar usuários:", error);
@@ -17,7 +18,7 @@ class AuthController {
   // Registrar novo usuário
   async register(req, res) {
     try {
-      const { username, email, password, displayName, avatarUrl, bio } = req.body;
+      const { username, email, password, displayName, avatarUrl, bio} = req.body;
 
       // Validação básica
       if (!username || !email || !password || !displayName || !avatarUrl || !bio) {
