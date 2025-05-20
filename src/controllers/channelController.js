@@ -63,12 +63,12 @@ class ChannelController {
       }
 
       res.status(201).json({
-        message: "Coleção criada com sucesso",
-        newCollection,
+        message: "Canal criado com sucesso",
+        newChannel,
       });
     } catch (error) {
-      console.error("Erro ao criar coleção:", error);
-      res.status(500).json({ error: "Erro ao criar coleção" });
+      console.error("Erro ao criar canal:", error);
+      res.status(500).json({ error: "Erro ao criar canal" });
     }
   }
 
