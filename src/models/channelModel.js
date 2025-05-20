@@ -51,13 +51,9 @@ class ChannelModel {
   }
 
   // Criar um novo canal
-  async create(name, description, isLive) {
+  async create(data) {
     const novoCanal = await prisma.channel.create({
-      data: {
-        name,
-        description,
-        isLive,
-      },
+      data,
     });
 
     return novoCanal;

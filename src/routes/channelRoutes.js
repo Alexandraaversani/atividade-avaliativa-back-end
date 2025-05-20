@@ -1,22 +1,12 @@
-//import express from "express";
-//import CollectionController from "../controllers/collectionController.js";
+import express from 'express';
+import ChannelController from '../controllers/channelController.js';
 
-//const collectionRouter = express.Router();
+const channelRouter = express.Router();
 
-// Rotas de Coleções
-// GET /colecoes - Listar todas as Coleções
-//collectionRouter.get("/", CollectionController.getAllCollections);
+channelRouter.get('/', ChannelController.getAllChannel);
 
-// GET /colecoes/:id - Obter uma Coleção pelo ID
-//collectionRouter.get("/:id", CollectionController.getCollectionById);
+channelRouter.post('/', ChannelController.createChannel);
 
-// POST /colecoes - Criar uma nova Coleção
-//collectionRouter.post("/", CollectionController.createCollection);
 
-// PUT /colecoes/:id - Atualizar uma Coleção
-//collectionRouter.put("/:id", CollectionController.updateCollection);
 
-// DELETE /colecoes/:id - Remover uma Coleção
-//collectionRouter.delete("/:id", CollectionController.deleteCollection);
-
-//export default collectionRouter;
+export default channelRouter;

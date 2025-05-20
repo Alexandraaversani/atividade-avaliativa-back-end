@@ -3,7 +3,9 @@ import prisma from "../../prisma/prisma.js";
 class UserModel {
   // Obter todos os usuários
   async findAll(displayName, bio) {
+
     const where = {};
+    
     if (displayName) {
       where.displayName = displayName; 
     }
